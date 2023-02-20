@@ -15,8 +15,8 @@ jobs:
     steps:
       - checkout
       - run:
-          name: "Say helgdfgdgdfggdfgdfglo"
-          command: "echo Hello, Wordfgdfgdfgdfgdfgdfld!!!"
+          name: "test circleci"
+          command: "echo executed workflow"
 
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
