@@ -18,7 +18,7 @@ jobs:
           name: "test circleci"
           command: |
             sudo apt-get update
-            sudo apt-install python3-pip
+            sudo apt install python3-pip
       - run: npm install && npm run build
 
 # Invoke jobs via workflows
