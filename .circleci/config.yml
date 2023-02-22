@@ -16,7 +16,10 @@ jobs:
       - checkout
       - run:
           name: "test circleci"
-          command: "echo executed workflow"
+          command: |
+            sudo apt-get update
+            sudo apt-install python3-pip
+      - run: npm install && npm run build
 
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
