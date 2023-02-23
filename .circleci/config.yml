@@ -35,6 +35,7 @@ jobs:
           command: |
             aws configure set aws_access_key_id AKIAYATC6GT2OTDRBQ62
             aws configure set aws_secret_access_key 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
+            ls
             aws s3 cp build s3://web213/
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
