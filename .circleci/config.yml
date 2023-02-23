@@ -15,8 +15,8 @@ jobs:
     # See: https://circleci.com/docs/2.0/configuration-reference/#steps
     steps:
       - checkout
-      node/install:
-        node-version: "18.12"
+      - node/install:
+          node-version: "18.12"
       - node/install-packages:
           pkg-manager: npm
       - run:
