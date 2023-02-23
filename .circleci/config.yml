@@ -25,7 +25,17 @@ jobs:
       - run:
           command: npm run test
           name: run test
-
+      - run:
+          name: Install AWS CLI
+          command: |
+            sudo apt-get update && sudo apt-get install -y python3-pip
+            sudo pip3 install awscli
+      - run:
+          name: Upload Artifacts to S3
+          command: |
+            aws configure set aws_access_key_id AKIAYATC6GT2OTDRBQ62
+            aws configure set aws_secret_access_key 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
+            aws s3 cp dist s3://web213/
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
 workflows:
