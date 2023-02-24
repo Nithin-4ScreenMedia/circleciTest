@@ -33,8 +33,8 @@ jobs:
       - run:
           name: Upload Artifacts to S3
           command: |
-            aws configure set aws_access_key_id AKIAYATC6GT2OTDRBQ62
-            aws configure set aws_secret_access_key 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
+            aws configure set aws_access_key_id $AWS_ACCESS_KEY_ID
+            aws configure set aws_secret_access_key $AWS_SECRET_ACCESS_KEY
             ls
             aws s3 cp build s3://web213 --recursive
             aws cloudfront create-invalidation --distribution-id E3SF4A0A5U3S12 --paths "/*"
