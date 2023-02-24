@@ -1,7 +1,24 @@
 .App {
+  display: flex;
+  justify-content: center;
+  background-color: #353941;
+  color: #ffffff;
+  line-height: 50vh;
   text-align: center;
+  font-size: 200%;
+  font-weight: bold;
+  flex-direction: column;
 }
 
+.link {
+  color: #18a3b6;
+  font-size: 80%;
+  font-weight:normal;
+  line-height: 10vh;
+
+
+
+}
 .App-logo {
   height: 40vmin;
   pointer-events: none;

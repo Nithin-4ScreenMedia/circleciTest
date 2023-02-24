@@ -4,21 +4,12 @@ import './App.css';
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to testing with added policies.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <div>
+      Sample project to test CircleCI workflow and deploy to S3
+      </div>
+      <a className="link" href='https://circleci.com/docs/'>CircleCI Docs</a>
     </div>
+    
   );
 }
 
