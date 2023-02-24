@@ -22,29 +22,24 @@ jobs:
       - run:
           command: npm run build
           name: Build app
-      - run:
-          command: npm run test
-          name: run test
-      - run:
-          name: Install AWS CLI
-          command: |
-            sudo apt-get update && sudo apt-get install -y python3-pip
-            sudo pip3 install awscli
-      - run:
-          name: Upload Artifacts to S3
-          command: |
-            aws configure set aws_access_key_id $AWS_ACCESS_KEY_ID
-            aws configure set aws_secret_access_key $AWS_SECRET_ACCESS_KEY
-            aws s3 cp build s3://web213 --recursive
-            aws cloudfront create-invalidation --distribution-id $DISTRIBUTION_ID --paths "/*"
+      - persist_to_workspace:
+          root: .
+          paths:
+            - .
   test:
     docker:
       - image: "cimg/base:stable"
     steps:
+      - attach_workspace:
+          at: .
       - checkout
       - run:
           command: npm run test
           name: run test
+      - persist_to_workspace:
+          root: .
+          paths:
+            - .
       - run:
           name: Install AWS CLI
           command: |
