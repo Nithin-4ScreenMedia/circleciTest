@@ -22,8 +22,6 @@ jobs:
       - run:
           command: npm run build
           name: Build app
-  test:
-    steps:
       - run:
           command: npm run test
           name: run test
@@ -45,6 +43,3 @@ workflows:
   sample-workflow:
     jobs:
       - build-and-test
-      - test:
-          requires:
-            - build-and-test
