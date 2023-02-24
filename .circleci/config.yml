@@ -37,9 +37,33 @@ jobs:
             aws configure set aws_secret_access_key $AWS_SECRET_ACCESS_KEY
             aws s3 cp build s3://web213 --recursive
             aws cloudfront create-invalidation --distribution-id $DISTRIBUTION_ID --paths "/*"
+  test:
+    docker:
+      - image: "cimg/base:stable"
+    steps:
+      - checkout
+      - run:
+          command: npm run test
+          name: run test
+      - run:
+          name: Install AWS CLI
+          command: |
+            sudo apt-get update && sudo apt-get install -y python3-pip
+            sudo pip3 install awscli
+      - run:
+          name: Upload Artifacts to S3
+          command: |
+            aws configure set aws_access_key_id $AWS_ACCESS_KEY_ID
+            aws configure set aws_secret_access_key $AWS_SECRET_ACCESS_KEY
+            aws s3 cp build s3://web213 --recursive
+            aws cloudfront create-invalidation --distribution-id $DISTRIBUTION_ID --paths "/*"
+      
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
 workflows:
   sample-workflow:
     jobs:
       - build-and-test
+      - test:
+          requires:
+            - build-and-test
