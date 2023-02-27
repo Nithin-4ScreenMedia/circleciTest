@@ -19,7 +19,6 @@ jobs:
             sudo apt update && sudo apt upgrade
             curl -fsSL https://deb.nodesource.com/setup_18.x | sudo -E bash -
             sudo apt install -y nodejs
-            sudo  apt-get install npm=8.19.2-1chl1~precise1 
             npm install
       - run:
           command: npm run build
