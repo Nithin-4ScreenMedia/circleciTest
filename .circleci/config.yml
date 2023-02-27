@@ -14,7 +14,7 @@ jobs:
     steps:
       - checkout
       - run:
-      name: install node
+          name: install node
           command: |
             sudo apt update && sudo apt upgrade
             sudo apt install nodejs 
