@@ -16,9 +16,8 @@ jobs:
       - run:
           name: install node
           command: |
-            sudo apt update && sudo apt upgrade
-            sudo apt install nodejs 
-            sudo apt install npm 
+            sudo  apt-get install nodejs=18.12.0-1chl1~precise1 
+            sudo  apt-get install npm=8.19.2-1chl1~precise1 
             npm install
       - run:
           command: npm run build
