@@ -23,13 +23,35 @@ jobs:
           command: npm run build
           name: Build app
       - run:
-          command: npm run test
-          name: run test
-      - run:
           name: Install AWS CLI
           command: |
             sudo apt-get update && sudo apt-get install -y python3-pip
             sudo pip3 install awscli
+      - persist_to_workspace:
+          root: .
+          paths:
+            - .
+  test:
+    docker:
+      - image: "cimg/base:stable"
+    steps:
+      - attach_workspace:
+          at: .
+      - checkout
+      - run:
+          command: npm run test
+          name: run test
+      - persist_to_workspace:
+          root: .
+          paths:
+            - .
+  deploy:
+    docker:
+      - image: "cimg/base:stable"
+    steps:
+      - attach_workspace:
+          at: .
+      - checkout
       - run:
           name: Upload Artifacts to S3
           command: |
@@ -43,3 +65,9 @@ workflows:
   sample-workflow:
     jobs:
       - build-and-test
+      - test:
+          requires:
+            - build-and-test
+      - deploy:
+          requires:
+            - test
