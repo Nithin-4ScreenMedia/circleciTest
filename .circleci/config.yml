@@ -14,16 +14,18 @@ jobs:
     steps:
       - checkout
       - run:
+      name: install node
           command: |
             sudo apt update && sudo apt upgrade
             sudo apt install nodejs 
+            sudo apt install npm 
       - run:
           command: npm run build
           name: Build app
       - run:
           name: Install AWS CLI
           command: |
-            sudo apt-get update && sudo apt-get install -y python3-pip
+            sudo apt-get install -y python3-pip
             sudo pip3 install awscli
       - persist_to_workspace:
           root: .
