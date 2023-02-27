@@ -15,9 +15,10 @@ jobs:
     # See: https://circleci.com/docs/2.0/configuration-reference/#steps
     steps:
       - checkout
-      - run:
-          command: npm install
-          name: install packages
+      - node/install:
+          node-version: "18.12"
+      - node/install-packages:
+          pkg-manager: npm
       - run:
           command: npm run build
           name: Build app
